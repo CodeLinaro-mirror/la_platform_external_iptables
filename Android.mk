@@ -22,8 +22,8 @@ LOCAL_CFLAGS:=-DNO_SHARED_LIBS
 LOCAL_SRC_FILES:= \
 	libiptc/libip4tc.c
 
-LOCAL_MODULE_TAGS:=
 LOCAL_MODULE:=libiptc
+LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_STATIC_LIBRARY)
 
@@ -31,8 +31,8 @@ include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE_TAGS:=
 LOCAL_MODULE:=libext
+LOCAL_MODULE_TAGS := optional
 
 # LOCAL_MODULE_CLASS must be defined before calling $(local-intermediates-dir)
 #
@@ -97,8 +97,8 @@ LOCAL_SRC_FILES:= \
 	iptables.c \
 	iptables-standalone.c 
 
-LOCAL_MODULE_TAGS:=
 LOCAL_MODULE:=iptables
+LOCAL_MODULE_TAGS := optional
 
 LOCAL_STATIC_LIBRARIES := \
 	libiptc \
