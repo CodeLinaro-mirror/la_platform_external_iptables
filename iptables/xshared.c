@@ -263,9 +263,9 @@ bool xtables_lock(bool wait)
 			return true;
 		else if (wait == false)
 			return false;
-		if (++i % 2 == 0)
+
 			fprintf(stderr, "Another app is currently holding the xtables lock; "
-				"waiting for it to exit...\n");
+				"waiting for it to exit...%s\n", strerror(errno));
 		sleep(1);
 	}
 }
