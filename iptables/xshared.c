@@ -247,6 +247,7 @@ bool xtables_lock(bool wait)
 {
 	int i = 0, ret, xt_socket;
 	struct sockaddr_un xt_addr;
+	useconds_t base_delay = 10000;
 
 	memset(&xt_addr, 0, sizeof(xt_addr));
 	xt_addr.sun_family = AF_UNIX;
@@ -263,9 +264,12 @@ bool xtables_lock(bool wait)
 			return true;
 		else if (wait == false)
 			return false;
-		if (++i % 2 == 0)
+
+		/* Don't print short delays below 200ms */
+		if (base_delay >= 200000)
 			fprintf(stderr, "Another app is currently holding the xtables lock; "
-				"waiting for it to exit...\n");
-		sleep(1);
+				"waiting %lu usecs for it to exit...\n", base_delay);
+		usleep(base_delay);
+		base_delay *= 2;
 	}
 }
